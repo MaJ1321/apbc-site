@@ -1,0 +1,204 @@
+:root {
+  --marine: #0B2545;
+  --bleu: #1F6FB2;
+  --turquoise: #13A89E;
+  --ambre: #E8A33D;
+  --fond: #F2F5F9;
+  --carte: #FFFFFF;
+  --texte: #1B2733;
+  --texte-doux: #5B6B7B;
+  --bordure: #D9E1EA;
+  --rayon: 10px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--fond);
+  color: var(--texte);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.45;
+}
+
+/* ── En-tête ─────────────────────────────────────────────── */
+.entete {
+  background: var(--marine);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 3vw, 32px);
+}
+.entete__marque { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.logo { height: 56px; width: auto; background: #fff; border-radius: 8px; padding: 6px 10px; display: block; }
+.logo--texte {
+  display: inline-flex; align-items: center; height: 56px;
+  color: var(--marine); font-weight: 800; letter-spacing: .08em; font-size: 1.1rem;
+}
+.entete h1 { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.7rem); letter-spacing: .02em; }
+.entete__sous-titre-inline { display: block; font-size: .8rem; font-weight: 500; color: #B9C8DA; letter-spacing: .03em; margin-top: 2px; }
+.entete p { margin: 4px 0 0; color: #D6E1EE; font-size: .88rem; }
+
+.badge-demo {
+  background: var(--ambre); color: #3A2600; font-weight: 700; font-size: .8rem;
+  padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+}
+
+/* ── Commandes ───────────────────────────────────────────── */
+.commandes {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px 32px;
+  padding: 16px clamp(16px, 3vw, 32px);
+  background: var(--carte); border-bottom: 1px solid var(--bordure);
+}
+.commande { display: flex; flex-direction: column; gap: 6px; max-width: 100%; }
+.commande label, .commande__etiquette { font-size: .78rem; font-weight: 700; color: var(--texte-doux); text-transform: uppercase; letter-spacing: .05em; }
+.commande__note { font-size: .78rem; color: var(--texte-doux); }
+
+select {
+  font: inherit; padding: 8px 12px; min-width: 220px;
+  border: 1px solid var(--bordure); border-radius: 8px; background: #fff; color: var(--texte);
+}
+select:focus-visible, .echeance:focus-visible, input:focus-visible { outline: 3px solid #9CC8EC; outline-offset: 2px; }
+
+.echeances { display: inline-flex; border: 1px solid var(--bordure); border-radius: 8px; overflow: hidden; max-width: 100%; }
+.echeance {
+  font: inherit; font-weight: 600; padding: 8px 14px; flex: 0 1 auto; min-width: 0; border: 0; border-right: 1px solid var(--bordure);
+  background: #fff; color: var(--texte); cursor: pointer;
+}
+.echeance:last-child { border-right: 0; }
+.echeance[aria-pressed="true"] { background: var(--bleu); color: #fff; }
+.echeance:disabled { background: #F0F3F7; color: #9AA7B5; cursor: not-allowed; }
+.echeance[aria-pressed="true"]:disabled { background: var(--bleu); color: #fff; opacity: .9; cursor: default; }
+
+.option { display: inline-flex; align-items: center; gap: 8px; font-size: .92rem; cursor: pointer; padding-bottom: 8px; }
+
+/* ── Contenu ─────────────────────────────────────────────── */
+main { padding: 20px clamp(16px, 3vw, 32px) 8px; max-width: 1500px; margin: 0 auto; }
+.message { margin: 16px clamp(16px, 3vw, 32px); padding: 14px 18px; background: #FFF4DD; border: 1px solid #F0D79B; border-radius: var(--rayon); }
+
+.cartes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 900px) { .cartes { grid-template-columns: minmax(0, 1fr); } }
+
+.carte {
+  background: var(--carte); border: 1px solid var(--bordure); border-radius: var(--rayon);
+  padding: 14px 16px 10px; min-width: 0;
+}
+.carte h2 { margin: 0; font-size: 1.05rem; color: var(--marine); }
+.carte__stats { margin: 4px 0 8px; font-size: .84rem; color: var(--texte-doux); min-height: 1.2em; }
+.carte--large { margin-top: 20px; }
+
+.graphique { width: 100%; }
+.graphique--carte { height: 430px; }
+.graphique--histo { height: 460px; }
+@media (max-width: 600px) { .graphique--carte { height: 340px; } }
+
+/* ── Légende ─────────────────────────────────────────────── */
+.legende { max-width: 640px; margin: 14px auto 0; padding: 0 16px; text-align: center; }
+.legende__titre { font-size: .84rem; font-weight: 600; color: var(--texte-doux); }
+.legende__barre { height: 14px; border-radius: 7px; margin: 6px 0 4px; border: 1px solid var(--bordure); }
+.legende__graduations { position: relative; height: 18px; font-size: .78rem; color: var(--texte-doux); }
+.legende__graduations span { position: absolute; transform: translateX(-50%); }
+
+/* ── Calendrier ──────────────────────────────────────────── */
+.calendrier { position: relative; max-width: 100%; }
+.calendrier__bouton {
+  font: inherit; display: inline-flex; align-items: center; gap: 10px; max-width: 100%;
+  padding: 8px 12px; min-width: 280px; text-align: left;
+  border: 1px solid var(--bordure); border-radius: 8px; background: #fff; color: var(--texte); cursor: pointer;
+}
+.calendrier__bouton span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calendrier__icone { color: var(--bleu); flex: none; }
+.calendrier__fleche { color: var(--texte-doux); flex: none; }
+.calendrier__bouton[aria-expanded="true"] { border-color: var(--bleu); box-shadow: 0 0 0 3px #CFE3F5; }
+.calendrier__bouton:focus-visible, .cal__nav-btn:focus-visible, .cal__jour:focus-visible,
+.cal__derniere:focus-visible, .onglet:focus-visible { outline: 3px solid #9CC8EC; outline-offset: 2px; }
+
+.calendrier__popover {
+  position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; width: 320px; max-width: calc(100vw - 32px);
+  background: #fff; border: 1px solid var(--bordure); border-radius: 12px; padding: 12px 12px 10px;
+  box-shadow: 0 10px 30px rgba(11, 37, 69, .18);
+}
+.calendrier__popover[hidden] { display: none; }
+.cal__nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; color: var(--marine); }
+.cal__nav strong { text-transform: capitalize; font-size: 1rem; }
+.cal__nav-btn {
+  font: inherit; font-size: 1.3rem; line-height: 1; width: 34px; height: 34px; border-radius: 8px;
+  border: 1px solid var(--bordure); background: #fff; color: var(--marine); cursor: pointer;
+}
+.cal__nav-btn:disabled { color: #B5C0CC; cursor: not-allowed; background: #F5F7FA; }
+.cal__grille { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cal__semaine { text-align: center; font-size: .72rem; font-weight: 700; color: var(--texte-doux); padding: 4px 0; text-transform: uppercase; }
+.cal__vide { height: 36px; }
+.cal__jour {
+  position: relative; font: inherit; font-size: .9rem; height: 36px; border: 1px solid transparent; border-radius: 8px;
+  background: transparent; color: #A7B3BF; cursor: not-allowed; padding: 0;
+}
+.cal__jour--dispo { color: var(--marine); font-weight: 700; background: #EAF3FB; cursor: pointer; }
+.cal__jour--dispo:hover { background: #D4E7F7; }
+.cal__jour--aujourdhui { border-color: var(--ambre); }
+.cal__jour--selection, .cal__jour--selection:hover { background: var(--bleu); color: #fff; }
+.cal__jour--obs::after {
+  content: ""; position: absolute; bottom: 4px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px;
+  border-radius: 50%; background: var(--turquoise);
+}
+.cal__jour--selection.cal__jour--obs::after { background: #fff; }
+.cal__pied { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--bordure); font-size: .76rem; color: var(--texte-doux); }
+.cal__legende { display: inline-flex; align-items: center; gap: 6px; }
+.cal__pastille { display: inline-block; width: 12px; height: 12px; border-radius: 4px; }
+.cal__pastille--dispo { background: #EAF3FB; border: 1px solid #B9D5EE; }
+.cal__pastille--obs { width: 7px; height: 7px; border-radius: 50%; background: var(--turquoise); }
+.cal__derniere {
+  font: inherit; font-size: .8rem; font-weight: 600; margin-left: auto; padding: 5px 10px;
+  border: 1px solid var(--bleu); border-radius: 7px; background: #fff; color: var(--bleu); cursor: pointer;
+}
+.cal__derniere:hover { background: var(--bleu); color: #fff; }
+
+/* ── Onglets ─────────────────────────────────────────────── */
+.onglets {
+  display: flex; gap: 4px; padding: 0 clamp(16px, 3vw, 32px);
+  background: var(--carte); border-bottom: 1px solid var(--bordure); overflow-x: auto;
+}
+.onglet {
+  font: inherit; font-weight: 600; white-space: nowrap; padding: 13px 20px; margin-bottom: -1px;
+  border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--texte-doux); cursor: pointer;
+}
+.onglet:hover { color: var(--marine); background: #F4F8FC; }
+.onglet[aria-selected="true"] { color: var(--bleu); border-bottom-color: var(--bleu); }
+.panneau[hidden] { display: none; }
+.barre-outils { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 28px; margin-bottom: 14px; }
+.barre-outils:empty { display: none; }
+.barre-outils .option { padding-bottom: 0; }
+
+/* ── Séries temporelles et vérification ──────────────────── */
+.graphique--series { height: 460px; }
+.graphique--verif { max-width: 980px; margin: 0 auto; min-height: 320px; }   /* hauteur fixée par app.js selon le rapport d'aspect */
+@media (max-width: 600px) { .graphique--series { height: 380px; } }
+.vide[hidden] { display: none; }
+.cartes--une { grid-template-columns: minmax(0, 980px); justify-content: center; }
+.cartes--verif .carte[hidden] { display: none; }
+.carte__stats--aide { margin: 8px 0 2px; font-size: .78rem; }
+.vide {
+  display: flex; align-items: center; justify-content: center; text-align: center; min-height: 220px;
+  padding: 24px; color: var(--texte-doux); background: #F7F9FC; border: 1px dashed var(--bordure); border-radius: var(--rayon);
+}
+
+/* ── Pied de page ────────────────────────────────────────── */
+.pied {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  margin-top: 24px; padding: 16px clamp(16px, 3vw, 32px);
+  font-size: .8rem; color: var(--texte-doux); border-top: 1px solid var(--bordure);
+}
+
+@media (max-width: 520px) {
+  .echeance { padding: 8px 9px; font-size: .85rem; }
+  select { min-width: 0; width: 100%; }
+  .commande:first-child { width: 100%; }
+  .calendrier__bouton { min-width: 0; width: 100%; }
+  .calendrier { width: 100%; }
+  .onglet { padding: 12px 14px; }
+  .entete { flex-wrap: wrap; }
+}
